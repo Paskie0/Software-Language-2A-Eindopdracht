@@ -4,9 +4,107 @@
     {
         static void Main()
         {
-            UI.Welcome();
-            Board.DrawBoard();
-            Game.Turn();
+            //UI.Welcome();
+            //Board.DrawBoard();
+            //Game.Turn();
+            BigBoard.InitBoard();
+            BigBoard.DrawBoard();
+            BigGame.Turn();
+        }
+    }
+
+    class BigBoard
+    {
+        public static char[,,] board = new char[9, 3, 3];
+
+        public static void InitBoard()
+        {
+            for (int boards = 0; boards < board.GetLength(0); boards++)
+            {
+                for (int rows = 0; rows < board.GetLength(1); rows++)
+                {
+                    for (int cols = 0; cols < board.GetLength(2); cols++)
+                    {
+                        board[boards, rows, cols] = '-';
+                    }
+                }
+            }
+        }
+
+        public static void DrawBoard()
+        {
+            Console.Clear();
+
+            // There are 9 small boards in a 3x3 grid
+            int boardsPerRow = 3; // 3 boards per row in the big board
+
+            // Iterate over each row of boards
+            for (int boardRow = 0; boardRow < boardsPerRow; boardRow++)
+            {
+                // For each of the 3 rows in each small board
+                for (int row = 0; row < 3; row++)
+                {
+                    // Iterate over each board in the row
+                    for (int boardCol = 0; boardCol < boardsPerRow; boardCol++)
+                    {
+                        int boardIndex = boardRow * boardsPerRow + boardCol; // Calculate the current board's index
+                        Console.Write("|"); // Start of a new board in the row
+
+                        // Print each cell in this row of the current board
+                        for (int col = 0; col < 3; col++)
+                        {
+                            Console.Write(board[boardIndex, row, col]);
+                        }
+                        Console.Write("|"); // End of the current board's row
+                    }
+                    Console.WriteLine(); // End of this row across all boards in the current big board row
+                }
+
+                // Print a dividing line between rows of boards, if not the last row
+                if (boardRow < boardsPerRow - 1)
+                {
+                    Console.WriteLine("---------------");
+                }
+            }
+        }
+    }
+
+    class BigGame
+    {
+        public static int currentPlayer = 0;
+        public static int currentBoard = 0;
+        public static bool gameEnded = false;
+
+        public static void Turn()
+        {
+            while (!gameEnded)
+            {
+                char symbol = currentPlayer == 0 ? 'X' : 'O';
+
+                Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
+                int pickedBoard = Convert.ToInt32(Console.ReadLine());
+
+                currentBoard = pickedBoard - 1;
+
+                Console.WriteLine($"Where would you like to place your {symbol}");
+
+                Console.WriteLine("X-axis:");
+                int x = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Y-axis:");
+                int y = Convert.ToInt32(Console.ReadLine());
+
+                if (BigBoard.board[currentBoard, x, y] == '-')
+                {
+                    BigBoard.board[currentBoard, x, y] = symbol;
+                    BigBoard.DrawBoard();
+                    currentPlayer = currentPlayer == 0 ? 1 : 0;// Switch turns
+                }
+                else
+                {
+                    Console.WriteLine("This cell is already occupied, please choose another one");
+                    // currentPlayer is not changed in the else part, so the currentPlayer gets to try again
+                }
+            }
         }
     }
 
