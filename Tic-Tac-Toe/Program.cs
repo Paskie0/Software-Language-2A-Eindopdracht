@@ -67,13 +67,45 @@
                 }
             }
         }
+        public static int GetCurrentBoard()
+        {
+            int[] position = [BigGame.x, BigGame.y];
+
+            switch (position)
+            {
+                case [0, 0]:
+                    return 0;
+                case [0, 1]:
+                    return 1;
+                case [0, 2]:
+                    return 2;
+                case [1, 0]:
+                    return 3;
+                case [1, 1]:
+                    return 4;
+                case [1, 2]:
+                    return 5;
+                case [2, 0]:
+                    return 6;
+                case [2, 1]:
+                    return 7;
+                case [2, 2]:
+                    return 8;
+                default:
+                    return 9;
+            }
+        }
     }
 
     class BigGame
     {
+        public static int x = 0;
+        public static int y = 0;
         public static int currentPlayer = 0;
         public static int currentBoard = 0;
+        public static int currentTurn = 0;
         public static bool gameEnded = false;
+        public static Random rnd = new();
 
         public static void Turn()
         {
@@ -81,23 +113,30 @@
             {
                 char symbol = currentPlayer == 0 ? 'X' : 'O';
 
-                Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
-                int pickedBoard = Convert.ToInt32(Console.ReadLine());
-
-                currentBoard = pickedBoard - 1;
-
-                Console.WriteLine($"Where would you like to place your {symbol}");
+                if (currentTurn < 1)
+                {
+                    Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
+                    int pickedBoard = Convert.ToInt32(Console.ReadLine());
+                    currentBoard = pickedBoard - 1;
+                    Console.WriteLine($"Where would you like to place your {symbol}");
+                }
+                else
+                {
+                    Console.WriteLine($"Player {currentPlayer + 1}, where would you like to play your {symbol}?");
+                }
 
                 Console.WriteLine("X-axis:");
-                int x = Convert.ToInt32(Console.ReadLine());
+                x = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("Y-axis:");
-                int y = Convert.ToInt32(Console.ReadLine());
+                y = Convert.ToInt32(Console.ReadLine());
 
                 if (BigBoard.board[currentBoard, x, y] == '-')
                 {
                     BigBoard.board[currentBoard, x, y] = symbol;
                     BigBoard.DrawBoard();
                     currentPlayer = currentPlayer == 0 ? 1 : 0;// Switch turns
+                    currentTurn++;
+                    currentBoard = BigBoard.GetCurrentBoard();
                 }
                 else
                 {
