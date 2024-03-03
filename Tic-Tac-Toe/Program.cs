@@ -25,7 +25,7 @@
                 {
                     for (int cols = 0; cols < board.GetLength(2); cols++)
                     {
-                        board[boards, rows, cols] = '-';
+                        board[boards, rows, cols] = ' ';
                     }
                 }
             }
@@ -130,13 +130,30 @@
                 Console.WriteLine("Y-axis:");
                 y = Convert.ToInt32(Console.ReadLine());
 
-                if (BigBoard.board[currentBoard, x, y] == '-')
+                if (BigBoard.board[currentBoard, x, y] == ' ')
                 {
                     BigBoard.board[currentBoard, x, y] = symbol;
                     BigBoard.DrawBoard();
-                    currentPlayer = currentPlayer == 0 ? 1 : 0;// Switch turns
-                    currentTurn++;
-                    currentBoard = BigBoard.GetCurrentBoard();
+
+                    if (CheckForWin(BigBoard.board))
+                    {
+                        for (int rows = 0; rows < BigBoard.board.GetLength(1); rows++)
+                        {
+                            for (int cols = 0; cols < BigBoard.board.GetLength(2); cols++)
+                            {
+                                BigBoard.board[currentBoard, rows, cols] = symbol;
+                                BigBoard.DrawBoard();
+                            }
+                        }
+                        Console.WriteLine($"Player {currentPlayer + 1} wins board {currentBoard + 1}!");
+                        gameEnded = true;
+                    }
+                    else
+                    {
+                        currentPlayer = currentPlayer == 0 ? 1 : 0;// Switch turns
+                        currentTurn++;
+                        currentBoard = BigBoard.GetCurrentBoard();
+                    }
                 }
                 else
                 {
@@ -144,6 +161,28 @@
                     // currentPlayer is not changed in the else part, so the currentPlayer gets to try again
                 }
             }
+        }
+
+        public static bool CheckForWin(char[,,] board)
+        {
+            // Check for straight win
+            for (int i = 0; i < 3; i++)
+            {
+                if ((board[currentBoard, i, 0] == board[currentBoard, i, 1] && board[currentBoard, i, 1] == board[currentBoard, i, 2] && board[currentBoard, i, 0] != ' ') ||
+                    (board[currentBoard, 0, i] == board[currentBoard, 1, i] && board[currentBoard, 1, i] == board[currentBoard, 2, i] && board[currentBoard, 0, i] != ' '))
+                {
+                    return true;
+                }
+            }
+
+            // Check for diagonal win
+            if ((board[currentBoard, 0, 0] == board[currentBoard, 1, 1] && board[currentBoard, 1, 1] == board[currentBoard, 2, 2] && board[currentBoard, 0, 0] != ' ') ||
+                (board[currentBoard, 0, 2] == board[currentBoard, 1, 1] && board[currentBoard, 1, 1] == board[currentBoard, 2, 0] && board[currentBoard, 0, 2] != ' '))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 
