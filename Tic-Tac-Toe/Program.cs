@@ -115,20 +115,37 @@
 
                 if (currentTurn < 1)
                 {
-                    Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
-                    int pickedBoard = Convert.ToInt32(Console.ReadLine());
-                    currentBoard = pickedBoard - 1;
-                    Console.WriteLine($"Where would you like to place your {symbol}");
+                    try
+                    {
+                        Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
+                        int pickedBoard = Convert.ToInt32(Console.ReadLine());
+                        currentBoard = pickedBoard - 1;
+                        Console.WriteLine($"Where would you like to place your {symbol}");
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Invalid input");
+                        continue;
+                    }
                 }
                 else
                 {
                     Console.WriteLine($"Player {currentPlayer + 1}, where would you like to play your {symbol}?");
                 }
 
-                Console.WriteLine("X-axis:");
-                x = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Y-axis:");
-                y = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    Console.WriteLine("X-axis:");
+                    x = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Y-axis:");
+                    y = Convert.ToInt32(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Invalid input");
+                    continue;
+                }
+
 
                 if (BigBoard.board[currentBoard, x, y] == ' ')
                 {
