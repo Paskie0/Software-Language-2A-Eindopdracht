@@ -1,27 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Pascal\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj": {}
+    "C:\\Users\\Pasca\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Pascal\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj": {
+    "C:\\Users\\Pasca\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Pascal\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj",
+        "projectUniqueName": "C:\\Users\\Pasca\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj",
         "projectName": "Tic-Tac-Toe",
-        "projectPath": "C:\\Users\\Pascal\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj",
-        "packagesPath": "C:\\Users\\Pascal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Pascal\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\obj\\",
+        "projectPath": "C:\\Users\\Pasca\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\Tic-Tac-Toe.csproj",
+        "packagesPath": "C:\\Users\\Pasca\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pasca\\Code\\Software-Language-2A-Eindopdracht\\Tic-Tac-Toe\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Pascal\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Pasca\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
@@ -32,6 +29,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
