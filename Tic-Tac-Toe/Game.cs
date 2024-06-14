@@ -27,50 +27,74 @@ namespace TicTacToe
 
         private static void ChooseBoard()
         {
-            Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play?");
-            try
+            bool validBoardSelected = false;
+
+            while (!validBoardSelected)
             {
-                int pickedBoard = Convert.ToInt32(Console.ReadLine()) - 1;
-                currentBoard = pickedBoard;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Please enter a number");
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Please enter a valid board between 1 and 9");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play? (1-9)");
+
+                try
+                {
+                    int pickedBoard = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                    if (pickedBoard >= 0 && pickedBoard < 9)
+                    {
+                        currentBoard = pickedBoard;
+                        validBoardSelected = true; // Valid board selected, exit the loop
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a valid board number between 1 and 9.");
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"An error occurred: {e.Message}");
+                }
             }
         }
+
 
         private static void MakeMove(char symbol)
         {
-            Console.WriteLine($"Player {currentPlayer + 1}, where would you like to play your {symbol}?");
+            bool validMove = false;
 
-            try
+            while (!validMove)
             {
-                Console.WriteLine("X-axis:");
-                x = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Y-axis:");
-                y = Convert.ToInt32(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Please enter a number");
-            }
-            catch (IndexOutOfRangeException)
-            {
-                Console.WriteLine("Please enter a valid coordinate between 0 and 2");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"Player {currentPlayer + 1}, where would you like to play your {symbol}?");
+
+                try
+                {
+                    Console.WriteLine("X-axis (0-2):");
+                    x = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Y-axis (0-2):");
+                    y = Convert.ToInt32(Console.ReadLine());
+
+                    if (x >= 0 && x < 3 && y >= 0 && y < 3)
+                    {
+                        validMove = true; // Valid coordinates entered, exit the loop
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter valid coordinates between 0 and 2.");
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"An error occurred: {e.Message}");
+                }
             }
         }
+
 
         private static void ProcessMove(char symbol)
         {
