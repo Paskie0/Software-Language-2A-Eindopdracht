@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Tic_Tac_Toe
-build_property.ProjectDir = C:\Users\Pasca\Code\Software-Language-2A-Eindopdracht\Tic-Tac-Toe\
+build_property.ProjectDir = C:\Users\Pascal\Code\Tic-Tac-Toe\Tic-Tac-Toe\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
