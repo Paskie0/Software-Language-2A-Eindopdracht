@@ -137,24 +137,35 @@ namespace TicTacToe
                 }
                 else
                 {
-                    Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play next? (1-9)");
-                    int pickedBoard = Convert.ToInt32(Console.ReadLine()) - 1; // Convert user input to 0-based index immediately
-
-                    if (pickedBoard >= 0 && pickedBoard < 9)
+                    try
                     {
-                        if (!Board.IsBoardCompleted(pickedBoard))
+                        Console.WriteLine($"Player {currentPlayer + 1}, on what board would you like to play next? (1-9)");
+                        int pickedBoard = Convert.ToInt32(Console.ReadLine()) - 1; // Convert user input to 0-based index immediately
+
+                        if (pickedBoard >= 0 && pickedBoard < 9)
                         {
-                            currentBoard = pickedBoard;
-                            validBoardSelected = true; // Exit the loop as a valid, uncompleted board has been selected
-                        }
-                        else
-                        {
-                            Console.WriteLine("That board has already been completed, please choose another one.");
+                            if (!Board.IsBoardCompleted(pickedBoard))
+                            {
+                                currentBoard = pickedBoard;
+                                validBoardSelected = true; // Exit the loop as a valid, uncompleted board has been selected
+                            }
+                            else
+                            {
+                                Console.WriteLine("That board has already been completed, please choose another one.");
+                            }
                         }
                     }
-                    else
+                    catch (FormatException)
                     {
-                        Console.WriteLine("Invalid board selection. Please choose a board between 1 and 9.");
+                        Console.WriteLine("Please enter a number");
+                    }
+                    catch (IndexOutOfRangeException)
+                    {
+                        Console.WriteLine("Please enter a valid board between 1 and 9");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
                     }
                 }
             }
