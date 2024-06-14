@@ -1,22 +1,44 @@
 # Ultimate Tic-Tac-Toe
 
-## Scrum
+## Setup
 
-Zie: [Github Projects](https://github.com/users/Paskie0/projects/2)
+Navigeer naar de Tic-Tac-Toe folder en start de applicatie met:
 
-## Functionaliteiten
+```
+dotnet run
+```
+
+Of doormiddel van het .exe bestand in
+
+```
+Tic-Tac-Toe/bin/Debug/net8.0/Tic-Tac-Toe.exe
+```
+
+## [Scrum (Github Projects)](https://github.com/users/Paskie0/projects/2)
+
+## [Git Map](Docs/Git-Map.png)
+
+## [Reflecties](Docs/Reflecties.md)
+
+## Handleiding
 
 Ultimate Tic-Tac-Toe is een grotere en uitgebreidere versie van de bekende Tic-Tac-Toe, deze versie bestaat uit 9 kleine borden waarop gespeeld kan worden tot 1 de winnaar is!
-Het spel begint met een welkom scherm waarna je meteen kan beginnen met de eerste zet. Na dit punt is het eigenlijk niet heel ingewikkeld en volgt het de bekende regels van Tic-Tac-Toe. 
+
+Het spel begint met een welkom scherm waarna je je kan verdiepen in de regels of meteen kan beginnen met de eerste zet. Na dit punt is het eigenlijk niet heel ingewikkeld en volgt het de bekende regels van Tic-Tac-Toe.
 3 op een rij en je wint het bord waarop je op dat moment speelt, 3 hele borden op een rij en je wint het hele spel.
 
-## Reflectie
+## Users Stories
 
-**Pascal:**
-Ik was toen ik begon met dit project nog nooit eerder in aanraking geweest met C#, alles was dus heel nieuw en ik moest aan veel dingen wennen. Waar je in JavaScript en Laravel veel dingen voorgeschoteld krijgt is dit in C# helemaal niet het geval (dit zal nog wel veel erger zijn in talen als C en Rust). Veel leren dus, vooral over de basisprincipes van programmeren (datatypes, alghoritmes, functional & OOP, etc..). Ik heb de lessen aandachtig gevolgd en kreeg vervolgens de smaak te pakken, opdracht na opdracht begon het allemaal steeds meer te klikken. Uiteindelijk vind ik dat ik een mooi resultaat heb neergezet.
+- Als gebruiker wil ik een welkom scherm hebben waar ik de regels van de game kan bekijken.
 
-**Nilo:**
-Ik heb een moeizame start gehad maar door de motivatie die ik had voor programmeren,  heb ik toch de draad opgepakt en ben inmiddels wel op dreef met C# aan het worden.
+- Als gebruiker wil ik een welkom scherm hebben vanaf waar ik de game kan beginnen.
 
-**Djimairo:**
+- Als gebruiker wil ik kunnen kiezen op welk bord ik begin
 
+- Als gebruiker wil ik coordinaten kunnen invoeren voor de zet op de bord
+
+- Als gebruiker wil ik dat een bord wordt gevuld met het winnende symbool zodra dat bord compleet is
+
+- Als gebruiker wil ik geen foutcode's zien, maar een duidelijke beschrijving van de fout.
+
+- Als gebruiker wil ik kunnen zien hoe lang het spel heeft geduurd

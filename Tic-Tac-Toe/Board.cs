@@ -39,6 +39,7 @@ namespace TicTacToe
             { 8, (2, 2) }
         };
 
+        // Get the board ready for the game
         public static void InitializeBoard()
         {
             EmptyAllBoards();
@@ -75,23 +76,31 @@ namespace TicTacToe
 
         public static void DrawBoard()
         {
-            Console.Clear();
+            Console.Clear(); // To make sure the board is cleared before drawing
 
+            // Loop through each small board row
             for (int boardRow = 0; boardRow < 3; boardRow++)
             {
+                // Loop through each cell row within the small boards
                 for (int row = 0; row < 3; row++)
                 {
+                    // Loop through each small board column
                     for (int boardCol = 0; boardCol < 3; boardCol++)
                     {
-                        Console.Write("|");
+                        Console.Write("|"); // Draw a vertical divider between boards
+
+                        // Loop through each cell column within the small boards
                         for (int col = 0; col < 3; col++)
                         {
+                            // Write the cell value to the console
                             Console.Write(Boards[positionToBoard[(boardRow, boardCol)], row, col]);
                         }
-                        Console.Write("|");
+                        Console.Write("|"); // Draw a vertical divider between cells
                     }
-                    Console.WriteLine();
+                    Console.WriteLine(); // Move to the next line for the next row of cells
                 }
+
+                // Draw horizontal dividers between rows of small boards, except for the last row
                 if (boardRow < 2)
                 {
                     Console.WriteLine("---------------");
@@ -99,13 +108,12 @@ namespace TicTacToe
             }
         }
 
-        public static bool IsBoardCompleted(int boardIndex)
+        public static bool IsBoardCompleted(int boardIndex) // Check if a small board is completed by getting the position from the current board and checking the cell values
         {
             return CompletedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] != ' ';
         }
 
-
-        public static void SetBoardAsCompleted(int boardIndex, char symbol)
+        public static void SetBoardAsCompleted(int boardIndex, char symbol) // Set a small board as completed by getting the position from the current board and setting the cell values
         {
             CompletedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] = symbol;
         }

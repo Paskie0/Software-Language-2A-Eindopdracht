@@ -14,15 +14,25 @@ namespace TicTacToe
 
         public static void Start()
         {
-            ChooseBoard();
+            // Start the timer thread
+            Thread timerThread = new(Program.TimerThread);
+            timerThread.Start();
 
-            while (!gameEnded)
+            ChooseBoard(); // Player 1 chooses the first board
+
+            while (!gameEnded) // Main game loop
             {
-                char symbol = currentPlayer == 0 ? 'X' : 'O';
+                char symbol = currentPlayer == 0 ? 'X' : 'O'; // Set the symbol to X or O depending on the current player
 
+                // Draw the board
+                Board.DrawBoard();
+
+                // Make move
                 MakeMove(symbol);
                 ProcessMove(symbol);
             }
+
+            timerThread.Join(); // Game ended, join the timer thread
         }
 
         private static void ChooseBoard()
@@ -53,11 +63,10 @@ namespace TicTacToe
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"An error occurred: {e.Message}");
+                    Console.WriteLine($"An error occurred: {e.Message}"); // Fallback for safety
                 }
             }
         }
-
 
         private static void MakeMove(char symbol)
         {
@@ -95,18 +104,17 @@ namespace TicTacToe
             }
         }
 
-
         private static void ProcessMove(char symbol)
         {
-            if (Board.Boards[currentBoard, x, y] == ' ')
+            if (Board.Boards[currentBoard, x, y] == ' ') // Check if the cell is empty
             {
-                Board.Boards[currentBoard, x, y] = symbol;
+                Board.Boards[currentBoard, x, y] = symbol; // Set the cell to the symbol
                 Board.DrawBoard();
 
                 if (CheckForSmallWin(Board.Boards))
                 {
-                    CompleteBoard(symbol);
-                    if (CheckForBigWin(Board.CompletedBoards))
+                    CompleteBoard(symbol); // Check for a small win and complete the board if one is found
+                    if (CheckForBigWin(Board.CompletedBoards)) // Check for a big win by checking all completed boards
                     {
                         Board.DrawBoard();
                         Console.WriteLine($"Player {currentPlayer + 1} wins the game!");
@@ -115,13 +123,13 @@ namespace TicTacToe
                     }
                     Board.DrawBoard(); // redraw board to show who won the board
                     Console.WriteLine($"Player {currentPlayer + 1} wins board {currentBoard + 1}!");
-                    SwitchTurn();
-                    BoardSelection();
+                    SwitchTurn(); // Switch to the next player
+                    BoardSelection(); // Select a new board
                 }
                 else
                 {
                     SwitchTurn();
-                    currentBoard = Board.positionToBoard[(x, y)];
+                    currentBoard = Board.positionToBoard[(x, y)]; // Set the current board to the position of the cell
                     BoardSelection();
                 }
             }
@@ -141,7 +149,7 @@ namespace TicTacToe
                 }
             }
 
-            Board.SetBoardAsCompleted(currentBoard, symbol);
+            Board.SetBoardAsCompleted(currentBoard, symbol); // Set the current board as completed
         }
 
         private static void SwitchTurn()
@@ -189,7 +197,7 @@ namespace TicTacToe
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.Message); // Fallback for safety
                     }
                 }
             }

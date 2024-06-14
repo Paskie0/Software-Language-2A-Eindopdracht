@@ -51,14 +51,14 @@ namespace TicTacToe
             string topBorder = "\u2554" + new string('\u2550', 36) + "\u2557";
             string middleBorder = "\u2560" + new string('\u2550', 36) + "\u2563";
             string bottomBorder = "\u255A" + new string('\u2550', 36) + "\u255D";
-            string spaceInsideBox = new string(' ', 36);
+            string spaceInsideBox = new(' ', 36);
 
             Console.WriteLine(topBorder);
             Console.WriteLine("\u2551  Welcome to Ultimate Tic-Tac-Toe   \u2551");
             Console.WriteLine(middleBorder);
             Console.WriteLine("\u2551" + spaceInsideBox + "\u2551");
 
-            string[] options = { "Start Game", "View Rules", "Exit" };
+            string[] options = ["Start Game", "View Rules", "Exit"];
             for (int i = 0; i < options.Length; i++)
             {
                 if (i == selectedOption)
@@ -82,7 +82,7 @@ namespace TicTacToe
             string topBorder = "\u2554" + new string('\u2550', 36) + "\u2557";
             string middleBorder = "\u2560" + new string('\u2550', 36) + "\u2563";
             string bottomBorder = "\u255A" + new string('\u2550', 36) + "\u255D";
-            string spaceInsideBox = new string(' ', 36);
+            string spaceInsideBox = new(' ', 36);
 
             Console.WriteLine(topBorder);
             Console.WriteLine("\u2551             Game Rules             \u2551");
@@ -110,12 +110,10 @@ namespace TicTacToe
 
         public static void End()
         {
-            Console.Clear();
-
             string topBorder = "\u2554" + new string('\u2550', 36) + "\u2557";
             string middleBorder = "\u2560" + new string('\u2550', 36) + "\u2563";
             string bottomBorder = "\u255A" + new string('\u2550', 36) + "\u255D";
-            string spaceInsideBox = new string(' ', 36);
+            string spaceInsideBox = new(' ', 36);
 
             Console.WriteLine(topBorder);
             Console.WriteLine("\u2551       Thank you for playing        \u2551");
