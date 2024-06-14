@@ -6,7 +6,7 @@
         {
             UI.Welcome(); // Display welcome message
             Board.InitializeBoard(); // Initialize the board
-            Game.Turn(); // Start the game
+            Game.Start(); // Start the game
         }
     }
 }

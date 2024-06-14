@@ -7,6 +7,8 @@ namespace TicTacToe
     {
         public static void Welcome()
         {
+            Console.Clear();
+
             string topBorder = "\u2554" + new string('\u2550', 36) + "\u2557";
             string middleBorder = "\u2560" + new string('\u2550', 36) + "\u2563";
             string bottomBorder = "\u255A" + new string('\u2550', 36) + "\u255D";
@@ -26,6 +28,8 @@ namespace TicTacToe
 
         public static void End()
         {
+            Console.Clear();
+
             string topBorder = "\u2554" + new string('\u2550', 36) + "\u2557";
             string middleBorder = "\u2560" + new string('\u2550', 36) + "\u2563";
             string bottomBorder = "\u255A" + new string('\u2550', 36) + "\u255D";
@@ -43,7 +47,7 @@ namespace TicTacToe
             Welcome();
             Board.InitializeBoard();
             Board.DrawBoard();
-            Game.Turn();
+            Game.Start();
         }
     }
 }

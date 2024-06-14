@@ -8,7 +8,8 @@ namespace TicTacToe
     /// </summary>
     class Board
     {
-        public static char[,,] board = new char[9, 3, 3]; // 3D array that represents the entire board, 9 small boards consisting of 3x3 cells each
+        public static char[,,] Boards = new char[9, 3, 3]; // 3D array that represents the entire board, 9 small boards consisting of 3x3 cells each
+        public static char[,] CompletedBoards = new char[3, 3]; // 2D array that represents the completed boards
 
         // Dictionary to map (x, y) coordinates to a board
         public static readonly Dictionary<(int, int), int> positionToBoard = new()
@@ -48,13 +49,13 @@ namespace TicTacToe
         public static void EmptyAllBoards()
         {
             // These 3 for loops together iterate over each cell in every board
-            for (int boards = 0; boards < board.GetLength(0); boards++)
+            for (int boards = 0; boards < Boards.GetLength(0); boards++)
             {
-                for (int rows = 0; rows < board.GetLength(1); rows++)
+                for (int rows = 0; rows < Boards.GetLength(1); rows++)
                 {
-                    for (int cols = 0; cols < board.GetLength(2); cols++)
+                    for (int cols = 0; cols < Boards.GetLength(2); cols++)
                     {
-                        board[boards, rows, cols] = ' '; // Fill the board with empty cells
+                        Boards[boards, rows, cols] = ' '; // Fill the board with empty cells
                     }
                 }
             }
@@ -62,12 +63,12 @@ namespace TicTacToe
 
         public static void SetAllBoardsUncompleted()
         {
-            // These 2 for loops together iterate over each board in the completedBoards array
+            // These 2 for loops together iterate over each board in the CompletedBoards array
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Game.completedBoards[i, j] = ' ';  // Set all boards to not completed (neutral)
+                    CompletedBoards[i, j] = ' ';  // Set all boards to not completed (neutral)
                 }
             }
         }
@@ -82,11 +83,10 @@ namespace TicTacToe
                 {
                     for (int boardCol = 0; boardCol < 3; boardCol++)
                     {
-                        int boardIndex = boardRow * 3 + boardCol;
                         Console.Write("|");
                         for (int col = 0; col < 3; col++)
                         {
-                            Console.Write(board[boardIndex, row, col]);
+                            Console.Write(Boards[positionToBoard[(boardRow, boardCol)], row, col]);
                         }
                         Console.Write("|");
                     }
@@ -101,19 +101,13 @@ namespace TicTacToe
 
         public static bool IsBoardCompleted(int boardIndex)
         {
-            if (Game.completedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] != ' ')
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return CompletedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] != ' ';
         }
+
 
         public static void SetBoardAsCompleted(int boardIndex, char symbol)
         {
-            Game.completedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] = symbol;
+            CompletedBoards[boardToPosition[boardIndex].Item1, boardToPosition[boardIndex].Item2] = symbol;
         }
     }
 }
